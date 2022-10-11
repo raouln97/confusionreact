@@ -12,37 +12,22 @@ class DishDetail extends Component {
   constructor(props) {
     super(props);
   }
-
-  //   rendercomments() {
-  //     const comment = this.props.dishes.comments.map((dish) => {
-  //       return (
-  //         <CardBody>
-  //           <CardText>{dish.comment}</CardText>
-  //           <CardText>{dish.date}</CardText>
-  //         </CardBody>
-  //       );
-  //     });
-  //     return comment;
-  //   }
   renderdish(dish) {
     return (
-      <div className="col-12 col-md-5 m-1">
-        <Card key={dish.id}>
-          <CardImg width="100%" src={dish.image} alt={dish.name} />
-          <CardImgOverlay>
-            <CardTitle>{dish.name}</CardTitle>
-          </CardImgOverlay>
-          <CardBody>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
-      </div>
+      <Card key={dish.id}>
+        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImgOverlay>
+          <CardTitle>{dish.name}</CardTitle>
+        </CardImgOverlay>
+        <CardBody>
+          <CardText>{dish.description}</CardText>
+        </CardBody>
+      </Card>
     );
   }
   render() {
     if (this.props.dishes != null) {
       const rendercomments = this.props.dishes.comments.map((dish) => {
-        console.log(dish);
         return (
           <CardBody>
             <CardText>{dish.comment}</CardText>
@@ -51,15 +36,17 @@ class DishDetail extends Component {
         );
       });
       return (
-        <div className="row">
-          {this.renderdish(this.props.dishes)}
+        <>
+          <div className="col-12 col-md-5 m-1">
+            {this.renderdish(this.props.dishes)}
+          </div>
           <div className="col-12 col-md-5 m-1">
             <Card key={this.props.dishes.comments.id}>
               <CardTitle>Comments</CardTitle>
               {rendercomments}
             </Card>
           </div>
-        </div>
+        </>
       );
     } else return <div></div>;
   }
